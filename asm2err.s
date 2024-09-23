@@ -19,21 +19,17 @@ configure:
 	; call 0xBB5A
 
 	; Fetch byte at ROM 0xC002 of upper ROM, which is rom version number.
-	di
-	exx
-	res 3,c 		; Enable upper rom.
-	out (c),c
-	ld a,(#0xC002)		; Read byte from 0xC002 in ROM.
-	set 3,c 		; Disable upper rom
-	out (c),c
-	exx
-	ei
-	; Ok ROM version number is in A.
+	call 0xB900 		; KL U ROM ENABLE
+	ld hl, #0xC002
+	ld c,(hl)
+	; call 0xB90C		; KL ROM RESTORE ; can be skipped since firmware will take control anyway
+	; Ok ROM version number is in C.
 
 ; 	; The part below sanity checks the ROM number and displays something if unsupported.
 ; 	; You might want to cut it away to save a few bytes.
 ; 	; -------------------------------- sanity checks BEGIN
 ; 	; Sanity check value.
+; 	ld a, c
 ; 	cp #5 ; max supported ROM configuration
 ; 	jr c, supported
 ; 	; unexpected ROM number, shout it to the screen repeatedly
@@ -47,7 +43,6 @@ configure:
 
 	; Compute address from where to pick value.
 	ld b, #0
-	ld c, a
 	ld hl, #table
 	add hl, bc
 	add hl, bc		; HL points to correct entry in table.
