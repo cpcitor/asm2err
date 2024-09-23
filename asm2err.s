@@ -35,7 +35,7 @@ configure:
 ; 	; unexpected ROM number, shout it to the screen repeatedly
 ; crash:
 ; 	push af
-; 	call #0xBB5A
+; 	call #0xBB5D
 ; 	pop af
 ; 	jr crash
 ; supported:
