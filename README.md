@@ -37,14 +37,6 @@ make
 make -j8
 ```
 
-Then
-
-``` bash
-make
-# or, faster, if you have e.g. 8 CPU cores
-make -j8
-```
-
 (If you don't know how cpc-dev-tool-chain works, be aware that the first time it will download source code of SDCC compiler and other tools useful to develop for Amstrad CPC, compile what is needed, then run the program through cpcec emulator.)
 
 ### When inside the Amstrad CPC
