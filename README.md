@@ -34,6 +34,7 @@ git clone https://github.com/cpcitor/asm2err
 cd asm2err
 make
 # or, faster, if you have e.g. 8 CPU cores
+git submodule update --init --recursive
 make -j8
 ```
 
